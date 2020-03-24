@@ -2261,10 +2261,10 @@ public class KafkaAdminClient extends AdminClient {
     }
 
     @Override
-    public boolean topicExists(String topic) throws ExecutionException, InterruptedException {
+    synchronized public boolean topicExists(String topic) throws ExecutionException, InterruptedException {
         ListTopicsResult listTopics = this.listTopics();
         Set<String> topics = listTopics.names().get();
-        return topic.contains(topic);
+        return topics.contains(topic);
     }
 
     @Override
